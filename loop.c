@@ -3,7 +3,7 @@
 
 int main()
 {
-   ppppp
+   pppppsssssss
    time_t rawtime;
    struct tm *timeinfo;
    FILE *fp;

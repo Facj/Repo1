@@ -3,7 +3,7 @@
 
 int main()
 {
-  ddd
+  dddd
   time_t rawtime;
    struct tm *timeinfo;
    FILE *fp;
@@ -13,7 +13,7 @@ int main()
    time (&rawtime);
    timeinfo = localtime (&rawtime);
    fp=fopen("version_record.txt","a");
-    fprintf(fp,"Version 3.1     %s",asctime(timeinfo));
+    fprintf(fp,"Version 3.2     %s",asctime(timeinfo));
    fclose(fp);
    }
  

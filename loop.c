@@ -3,7 +3,7 @@
 
 int main()
 {
-  
+  ddd
   time_t rawtime;
    struct tm *timeinfo;
    FILE *fp;

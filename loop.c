@@ -7,12 +7,13 @@ int main()
    struct tm *timeinfo;
    FILE *fp;
    
-   while(1){
-   sleep(5);
+   while(1)
+  {
+    sleep(5);
    time (&rawtime);
    timeinfo = localtime (&rawtime);
    fp=fopen("version_record.txt","a");
-    fprintf(fp,"Version 3.3.7  signed   %s",asctime(timeinfo));
+    fprintf(fp,"Version 4.1.2  %s ",asctime(timeinfo));
    fclose(fp);
    }
  

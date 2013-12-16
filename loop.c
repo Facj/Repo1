@@ -13,7 +13,7 @@ int main()
    time (&rawtime);
    timeinfo = localtime (&rawtime);
    fp=fopen("version_record.txt","a");
-    fprintf(fp,"Version 4.2.0  %s ",asctime(timeinfo));
+    fprintf(fp,"Version 4.2.1  %s ",asctime(timeinfo));
    fclose(fp);
    }
  

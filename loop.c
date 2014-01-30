@@ -9,7 +9,7 @@ int main()
    
    while(1)
   {
-      sleep(5);
+    sleep(5);
    time (&rawtime);
    timeinfo = localtime (&rawtime);
    fp=fopen("version_record.txt","a");

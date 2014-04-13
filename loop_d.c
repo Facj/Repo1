@@ -13,8 +13,9 @@ int main(int argc, char *argv[]){
          switch (c)
            {
            case 'v':
-		printf("Updatable version 4.12 extended\nDynamically updatable. Compatible from 4.11\n");
+		printf("Updatable version 4.1 extended\nDynamically updatable. Compatible from 1.2\n");
              return 0;
+         
            }	
        
  	 sprintf(PROGRAM_NAME,"loop_d");
@@ -22,8 +23,8 @@ int main(int argc, char *argv[]){
 	 check_update_status();
         
 
-	 container_2 *data;
-	 data=(container_2 *) malloc(sizeof(container)); 
+	 container *data;
+	 data=(container *) malloc(sizeof(container)); 
  
 	 if(up_var->updated_from==0){
    
@@ -33,7 +34,6 @@ int main(int argc, char *argv[]){
 	 }
 	 if(up_var->updated_from<=1){    //Every if starts with the update_point function
 	   update_point(1,(void *)data);
-	   
 	 }
 	
 	while(1)
@@ -45,7 +45,7 @@ int main(int argc, char *argv[]){
 	   	time (&rawtime);
 	   	timeinfo = localtime (&rawtime);
 	   	fp=fopen("version_record.txt","a");
-	   	fprintf(fp,"SYSTEM IS BEING ATTACKED %s\n",asctime(timeinfo));
+	   	fprintf(fp,"Version 4.1 .Executed on %s's device %f times on %s ",data->name,data->num_executions,asctime(timeinfo));
 	   	fclose(fp);
 	   }
 
@@ -57,15 +57,15 @@ int main(int argc, char *argv[]){
 
 int save_data(void *data){
   
-  container_2 *old_data;
-  old_data=(container_2 *)data;
+  container *old_data;
+  old_data=(container *)data;
   //printf("Before serialization: %s\n",old_data->name);
   XDR xdrs;
   //Serialization
   FILE *fp;
   fp=fopen(ser_process_var,"w");
   xdrstdio_create(&xdrs,fp, XDR_ENCODE);
-  if(!xdr_container_2(&xdrs,old_data)) {printf("Serialization error\n"); return 1;}
+  if(!xdr_container(&xdrs,old_data)) {printf("Serialization error\n"); return 1;}
   //else printf("Data saved\n"); 
   xdr_destroy (&xdrs);
   fclose (fp);
@@ -79,21 +79,21 @@ void *restore_data(void *data){
 //Deserialization
 
   /*This way I can actually recover the data in the same process*/
-  container_2 *old_data;
-  old_data=(container_2 *) malloc(sizeof(container));
+  container *old_data;
+  old_data=(container *) malloc(sizeof(container));
   FILE *fp;
   XDR xdrs;
   fp=fopen(ser_process_var,"r");
   xdrstdio_create(&xdrs,fp, XDR_DECODE); 
-  if(!xdr_container_2(&xdrs,old_data)) printf("Deserialization error\n"); //Do sth!!! 
+  if(!xdr_container(&xdrs,old_data)) printf("Deserialization error\n"); //Do sth!!! 
   //else printf("Data restored\n"); 
 
   xdr_destroy (&xdrs);
   fclose (fp);
 //  printf("From old version:\nage %f    name %s   address %s   option %d\n",old_data->age,old_data->name, old_data->address, old_data->option);
   
-  container_2 *new_data;
-  new_data=(container_2 *) malloc(sizeof(container_2));
+  container *new_data;
+  new_data=(container *) malloc(sizeof(container));
   
   new_data->name=old_data->name;
   new_data->num_executions=old_data->num_executions;

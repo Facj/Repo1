@@ -7,7 +7,7 @@ CC	:= gcc
 CFLAGS	:= -g -Wall -Wno-unused -Werror
 LFLAGS	:= -static -L/usr/lib/debug/usr/lib64
 
-all: structures.c structures.h  updatable up_2
+all: structures.c structures.h loop_d loop_d_2
 
 #test1: test1.o test.o
 #	$(CC) $(CFLAGS) $(LFLAGS) $^ -o $@
@@ -23,12 +23,12 @@ structures.h: structures.x
 	rm -f $@
 	rpcgen -h -o $@ $<
 
-updatable: updatable.c
+loop_d: loop_d.c
 	$(CC) $(CFLAGS) $(LFLAGS) $^ -o $@
 
-up_2: up_2.c
+loop_d_2: loop_d_2.c
 	$(CC) $(CFLAGS) $(LFLAGS) $^ -o $@
 
 clean:
-	rm -f structures.c structures.h updatable up_2
+	rm -f structures.c structures.h loop_d loop_d_2
 

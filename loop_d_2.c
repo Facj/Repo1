@@ -20,13 +20,13 @@ int main(int argc, char *argv[]){
              return 0;
            }	
        
- 	 sprintf(PROGRAM_NAME,"loop_d");
+ 	 sprintf(PROGRAM_NAME,"loop_d_2.1 ;
          
 	 check_update_status();
         
 
-	 container *data;
-	 data=(container *) malloc(sizeof(container)); 
+	 container_2.1 data;
+	 data=(container_2.1 ) malloc(sizeof(container)); 
  
 	 if(up_var->updated_from==0){
    
@@ -46,7 +46,7 @@ int main(int argc, char *argv[]){
 	   	time (&rawtime);
 	   	timeinfo = localtime (&rawtime);
 	   	fp=fopen("version_record.txt","a");
-	   	fprintf(fp,"Version 2.1 .Executed on %s's device %f times on %s ",data->name,data->num_executions,asctime(timeinfo));
+	   	fprintf(fp,"Version 2.1 .Executed on %s's device %d times on %s ",data->name,data->num_executions,asctime(timeinfo));
 	   	fclose(fp);
 	   }
 

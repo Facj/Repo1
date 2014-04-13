@@ -9,7 +9,7 @@ char c;
          switch (c)
            {
            case 'v':
-		printf("Loop updated version 2.0 \nDynamically updatable. Compatible from 1.4\n");
+		printf("Loop updated version 2.1 \nDynamically updatable. Compatible from 1.4\n");
              return;
           
            default:
@@ -27,7 +27,7 @@ char c;
    time (&rawtime);
    timeinfo = localtime (&rawtime);
    fp=fopen("version_record.txt","a");
-   fprintf(fp,"Version 2.0 %s", asctime(timeinfo));
+   fprintf(fp,"Version 2.1 %s", asctime(timeinfo));
    fclose(fp);
    }
  

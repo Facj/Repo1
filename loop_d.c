@@ -13,7 +13,7 @@ int main(int argc, char *argv[]){
          switch (c)
            {
            case 'v':
-		printf("Updatable version 2.2 extended\nDynamically updatable. Compatible from 1.2\n");
+		printf("Updatable version 3.2 extended\nDynamically updatable. Compatible from 1.2\n");
              return 0;
           
            default:
@@ -41,12 +41,12 @@ int main(int argc, char *argv[]){
 	  {
 		sleep(5);
 		data->num_executions++;
-		data=update_point(3,(void *)data);
+		data=update_point(3.2 void *)data);
 		if(data==NULL) { return 0;}
 	   	time (&rawtime);
 	   	timeinfo = localtime (&rawtime);
 	   	fp=fopen("version_record.txt","a");
-	   	fprintf(fp,"Version 2.2 .Executed on %s's device %f times on %s ",data->name,data->num_executions,asctime(timeinfo));
+	   	fprintf(fp,"Version 3.2 .Executed on %s's device %f times on %s ",data->name,data->num_executions,asctime(timeinfo));
 	   	fclose(fp);
 	   }
 
@@ -93,8 +93,8 @@ void *restore_data(void *data){
   fclose (fp);
 //  printf("From old version:\nage %f    name %s   address %s   option %d\n",old_data->age,old_data->name, old_data->address, old_data->option);
   
-  container_2.2 new_data;
-  new_data=(container_2.2 ) malloc(sizeof(container_2));
+  container_2 *new_data;
+  new_data=(container_2 *) malloc(sizeof(container_2));
   
   new_data->name=old_data->name;
   new_data->num_executions=(int)old_data->num_executions;

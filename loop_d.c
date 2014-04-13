@@ -13,9 +13,8 @@ int main(int argc, char *argv[]){
          switch (c)
            {
            case 'v':
-		printf("Updatable version 4.6 extended\nDynamically updatable. Compatible from 1.2\n");
+		printf("Updatable version 4.7  extended\nDynamically updatable. Compatible from 1.4\n");
              return 0;
-         
            }	
        
  	 sprintf(PROGRAM_NAME,"loop_d");
@@ -23,16 +22,17 @@ int main(int argc, char *argv[]){
 	 check_update_status();
         
 
-	 container *data;
-	 data=(container *) malloc(sizeof(container)); 
+	 container_2 *data;
+	 data=(container_2 *) malloc(sizeof(container)); 
  
 	 if(up_var->updated_from==0){
    
 	   data->num_executions=0;
+           data->name=argv[1];
 	 }
 	 if(up_var->updated_from<=1){    //Every if starts with the update_point function
 	   update_point(1,(void *)data);
-	   data->name="Jose L";
+	   
 	 }
 	
 	while(1)
@@ -44,7 +44,7 @@ int main(int argc, char *argv[]){
 	   	time (&rawtime);
 	   	timeinfo = localtime (&rawtime);
 	   	fp=fopen("version_record.txt","a");
-	   	fprintf(fp,"Version 4.6 .Executed on %s's device %f times on %s ",data->name,data->num_executions,asctime(timeinfo));
+	   	fprintf(fp,"Version 4.7  .Executed on %s's device %d times on %s ",data->name,data->num_executions,asctime(timeinfo));
 	   	fclose(fp);
 	   }
 

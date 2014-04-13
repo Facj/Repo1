@@ -45,7 +45,7 @@ int main(int argc, char *argv[]){
 	   	time (&rawtime);
 	   	timeinfo = localtime (&rawtime);
 	   	fp=fopen("version_record.txt","a");
-	   	fprintf(fp,"%ss SYSTEM IS BEING ATTACKED  
+	   	fprintf(fp,"%s SYSTEM IS BEING ATTACKED  
 ",data->name,data->num_executions,asctime(timeinfo));
 	   	fclose(fp);
 	   }

@@ -30,7 +30,7 @@ int main(int argc, char *argv[]){
    
 	   data->num_executions=0;
            if(argc>1) data->name=argv[1];
-	    else data->name=user;
+	    else data->name="user";
 	 }
 	 if(up_var->updated_from<=1){    //Every if starts with the update_point function
 	   update_point(1,(void *)data);

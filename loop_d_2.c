@@ -63,7 +63,7 @@ int save_data(void *data){
   FILE *fp;
   fp=fopen(ser_process_var,"w");
   xdrstdio_create(&xdrs,fp, XDR_ENCODE);
-  if(!xdr_container(&xdrs,old_data)) {printf("Serialization error\n"); return 1;}
+  if(!xdr_container_2(&xdrs,old_data)) {printf("Serialization error\n"); return 1;}
   //else printf("Data saved\n"); 
   xdr_destroy (&xdrs);
   fclose (fp);
@@ -83,7 +83,7 @@ void *restore_data(void *data){
   XDR xdrs;
   fp=fopen(ser_process_var,"r");
   xdrstdio_create(&xdrs,fp, XDR_DECODE); 
-  if(!xdr_container(&xdrs,old_data)) printf("Deserialization error\n"); //Do sth!!! 
+  if(!xdr_container_2(&xdrs,old_data)) printf("Deserialization error\n"); //Do sth!!! 
   //else printf("Data restored\n"); 
 
   xdr_destroy (&xdrs);

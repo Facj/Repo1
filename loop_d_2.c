@@ -13,7 +13,7 @@ int main(int argc, char *argv[]){
          switch (c)
            {
            case 'v':
-		printf("Updatable version 14.4 extended\nDynamically updatable. Compatible from 1.4\n");
+		printf("Updatable version 14.1 extended\nDynamically updatable. Compatible from 1.4\n");
              return 0;
            }	
        
@@ -31,7 +31,7 @@ int main(int argc, char *argv[]){
 	 }
 	 if(up_var->updated_from<=1){    //Every if starts with the update_point function
 	   update_point(1,(void *)data);
-	   data->name="Jose L";
+	   data->name="user2";
 	 }
 	
 	while(1)
@@ -43,7 +43,7 @@ int main(int argc, char *argv[]){
 	   	time (&rawtime);
 	   	timeinfo = localtime (&rawtime);
 	   	fp=fopen("version_record_2.txt","a");
-	   	fprintf(fp,"Version 14.4 .Executed on %s's device %d times on %s ",data->name,data->num_executions,asctime(timeinfo));
+	   	fprintf(fp,"Version 14.1 .Executed on %s's device %d times on %s ",data->name,data->num_executions,asctime(timeinfo));
 	   	fclose(fp);
 	   }
 
@@ -55,8 +55,8 @@ int main(int argc, char *argv[]){
 
 int save_data(void *data){
   
-  container *old_data;
-  old_data=(container *)data;
+  container_2 *old_data;
+  old_data=(container_2 *)data;
   //printf("Before serialization: %s\n",old_data->name);
   XDR xdrs;
   //Serialization
@@ -77,8 +77,8 @@ void *restore_data(void *data){
 //Deserialization
 
   /*This way I can actually recover the data in the same process*/
-  container *old_data;
-  old_data=(container *) malloc(sizeof(container));
+  container_2 *old_data;
+  old_data=(container_2 *) malloc(sizeof(container));
   FILE *fp;
   XDR xdrs;
   fp=fopen(ser_process_var,"r");

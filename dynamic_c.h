@@ -201,9 +201,9 @@ void *update_point(int up_id, void **data){
     update_successful=0;
     save_update_status();
     //sprintf(exec_new,"gnome-terminal ./up_2 &"); //Modified
-    sprintf(exec_new,"lxterminal ./%s &",PROGRAM_NAME);    
+    sprintf(exec_new,"./%s &",PROGRAM_NAME);    
     //printf("Process %d .START NEW VERSION\n",up_var->old_version_pid);
-    system("./loop_d &");
+    system(exec_new);
     sleep(10);
     if(update_successful) {
 	//printf("SUCCESSFUL\n");  

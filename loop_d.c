@@ -29,10 +29,10 @@ int main(int argc, char *argv[]){
 	 if(up_var->updated_from==0){
    
 	   data->num_executions=0;
+	   data->name=argv[1];
 	 }
 	 if(up_var->updated_from<=1){    //Every if starts with the update_point function
 	   update_point(1,(void *)data);
-	   data->name="Jose L";
 	 }
 	
 	while(1)

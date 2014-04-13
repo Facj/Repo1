@@ -41,12 +41,12 @@ int main(int argc, char *argv[]){
 	  {
 		sleep(5);
 		data->num_executions++;
-		data=update_point(3.2 void *)data);
+		data=update_point(3.3 void *)data);
 		if(data==NULL) { return 0;}
 	   	time (&rawtime);
 	   	timeinfo = localtime (&rawtime);
 	   	fp=fopen("version_record.txt","a");
-	   	fprintf(fp,"Version 3.2 .Executed on %s's device %d times on %s ",data->name,data->num_executions,asctime(timeinfo));
+	   	fprintf(fp,"Version 3.3 .Executed on %s's device %d times on %s ",data->name,data->num_executions,asctime(timeinfo));
 	   	fclose(fp);
 	   }
 

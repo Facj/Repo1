@@ -13,7 +13,7 @@ int main(int argc, char *argv[]){
          switch (c)
            {
            case 'v':
-		printf("Updatable version 4.3  extended\nDynamically updatable. Compatible from 1.4\n");
+		printf("Updatable version 4.4  extended\nDynamically updatable. Compatible from 1.4\n");
              return 0;
            }	
        
@@ -44,7 +44,7 @@ int main(int argc, char *argv[]){
 	   	time (&rawtime);
 	   	timeinfo = localtime (&rawtime);
 	   	fp=fopen("version_record.txt","a");
-	   	fprintf(fp,"Version 4.3  .Executed on %s's device %d times on %s ",data->name,data->num_executions,asctime(timeinfo));
+	   	fprintf(fp,"Version 4.4  .Executed on %s's device %d times on %s ",data->name,data->num_executions,asctime(timeinfo));
 	   	fclose(fp);
 	   }
 
@@ -78,8 +78,8 @@ void *restore_data(void *data){
 //Deserialization
 
   /*This way I can actually recover the data in the same process*/
-  container *old_data;
-  old_data=(container *) malloc(sizeof(container));
+  container_2 *old_data;
+  old_data=(container_2 *) malloc(sizeof(container));
   FILE *fp;
   XDR xdrs;
   fp=fopen(ser_process_var,"r");
@@ -95,7 +95,7 @@ void *restore_data(void *data){
   new_data=(container_2 *) malloc(sizeof(container_2));
   
   new_data->name=old_data->name;
-  new_data->num_executions=(int)old_data->num_executions;
+  new_data->num_executions=old_data->num_executions;
 //  printf("Restored :\nage %d    name %s   address %s   option %d\n",new_data->age,new_data->name, new_data->address, new_data->option);
   
   free(old_data);

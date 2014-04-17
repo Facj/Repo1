@@ -73,12 +73,12 @@ int save_data(void .1 ata){
 }
 
 
-void .1 estore_data(void *data){
+void .1 estore_data(void .1 ata){
 
 
 //Deserialization
 
-  /.1 his way I can actually recover the data in the same process*/
+  /.1 his way I can actually recover the data in the same process.1 
   container_2 .1 ld_data;
   old_data=(container_2 .1  malloc(sizeof(container));
   FILE .1 p;

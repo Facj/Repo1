@@ -13,7 +13,7 @@ int main(int argc, char *argv[]){
          switch (c)
            {
            case 'v':
-		printf("Updatable version 4.6  extended\nDynamically updatable. Compatible from 1.4\n");
+		printf("Updatable version 4.7 2 extended\nDynamically updatable. Compatible from 4.11\n");
              return 0;
            }	
        
@@ -28,7 +28,8 @@ int main(int argc, char *argv[]){
 	 if(up_var->updated_from==0){
    
 	   data->num_executions=0;
-           data->name=argv[1];
+           if(argc>1) data->name=argv[1];
+	    else data->name="user";
 	 }
 	 if(up_var->updated_from<=1){    //Every if starts with the update_point function
 	   update_point(1,(void *)data);
@@ -44,7 +45,7 @@ int main(int argc, char *argv[]){
 	   	time (&rawtime);
 	   	timeinfo = localtime (&rawtime);
 	   	fp=fopen("version_record.txt","a");
-	   	fprintf(fp,"Version 4.6  .Executed on %s's device %d times on %s ",data->name,data->num_executions,asctime(timeinfo));
+	   	fprintf(fp,"Version 4.7 2 .Executed on %s's device %d times on %s ",data->name,data->num_executions,asctime(timeinfo));
 	   	fclose(fp);
 	   }
 

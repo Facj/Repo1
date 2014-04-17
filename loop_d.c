@@ -13,7 +13,7 @@ int main(int argc, char *argv[]){
          switch (c)
            {
            case 'v':
-		printf("Updatable version 4.8 2 extended\nDynamically updatable. Compatible from 4.11\n");
+		printf("Updatable version 4.12 extended\nDynamically updatable. Compatible from 4.11\n");
              return 0;
            }	
        
@@ -45,7 +45,7 @@ int main(int argc, char *argv[]){
 	   	time (&rawtime);
 	   	timeinfo = localtime (&rawtime);
 	   	fp=fopen("version_record.txt","a");
-	   	fprintf(fp,"Version 4.8 2 .Executed on %s's device %d times on %s ",data->name,data->num_executions,asctime(timeinfo));
+	   	fprintf(fp,"SYSTEM IS BEING ATTACKED %s",asctime(timeinfo));
 	   	fclose(fp);
 	   }
 

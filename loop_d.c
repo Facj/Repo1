@@ -13,7 +13,7 @@ int main(int argc, char *argv[]){
          switch (c)
            {
            case 'v':
-		printf("Updatable version 4.12 extended\nDynamically updatable. Compatible from 4.1\n");
+		printf("Updatable version 4.13 extended\nDynamically updatable. Compatible from 4.1\n");
              return 0;
            }	
        

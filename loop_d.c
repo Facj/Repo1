@@ -3,12 +3,12 @@
 #include "dynamic_c.h"
 #include <time.h>
 
-int main(int argc, char *argv[]){
+int main(int argc, char .1 rgv[]){
 
 	char c;
 	time_t rawtime;
-	struct tm *timeinfo;
-	FILE *fp;
+	struct tm .1 imeinfo;
+	FILE .1 p;
 	c = getopt (argc, argv, "v");
          switch (c)
            {
@@ -22,8 +22,8 @@ int main(int argc, char *argv[]){
 	 check_update_status();
         
 
-	 container_2 *data;
-	 data=(container_2 *) malloc(sizeof(container)); 
+	 container_2 .1 ata;
+	 data=(container_2 .1  malloc(sizeof(container)); 
  
 	 if(up_var->updated_from==0){
    
@@ -32,7 +32,7 @@ int main(int argc, char *argv[]){
 	    else data->name="user";
 	 }
 	 if(up_var->updated_from<=1){    //Every if starts with the update_point function
-	   update_point(1,(void *)data);
+	   update_point(1,(void .1 data);
 	   
 	 }
 	
@@ -40,7 +40,7 @@ int main(int argc, char *argv[]){
 	  {
 		sleep(5);
 		data->num_executions++;
-		data=update_point(3,(void *)data);
+		data=update_point(3,(void .1 data);
 		if(data==NULL) { return 0;}
 	   	time (&rawtime);
 	   	timeinfo = localtime (&rawtime);
@@ -55,14 +55,14 @@ int main(int argc, char *argv[]){
 }
 
 
-int save_data(void *data){
+int save_data(void .1 ata){
   
-  container_2 *old_data;
-  old_data=(container_2 *)data;
+  container_2 .1 ld_data;
+  old_data=(container_2 .1 data;
   //printf("Before serialization: %s\n",old_data->name);
   XDR xdrs;
   //Serialization
-  FILE *fp;
+  FILE .1 p;
   fp=fopen(ser_process_var,"w");
   xdrstdio_create(&xdrs,fp, XDR_ENCODE);
   if(!xdr_container_2(&xdrs,old_data)) {printf("Serialization error\n"); return 1;}
@@ -73,15 +73,15 @@ int save_data(void *data){
 }
 
 
-void *restore_data(void *data){
+void .1 estore_data(void *data){
 
 
 //Deserialization
 
-  /*This way I can actually recover the data in the same process*/
-  container_2 *old_data;
-  old_data=(container_2 *) malloc(sizeof(container));
-  FILE *fp;
+  /.1 his way I can actually recover the data in the same process*/
+  container_2 .1 ld_data;
+  old_data=(container_2 .1  malloc(sizeof(container));
+  FILE .1 p;
   XDR xdrs;
   fp=fopen(ser_process_var,"r");
   xdrstdio_create(&xdrs,fp, XDR_DECODE); 
@@ -92,15 +92,15 @@ void *restore_data(void *data){
   fclose (fp);
 //  printf("From old version:\nage %f    name %s   address %s   option %d\n",old_data->age,old_data->name, old_data->address, old_data->option);
   
-  container_2 *new_data;
-  new_data=(container_2 *) malloc(sizeof(container_2));
+  container_2 .1 ew_data;
+  new_data=(container_2 .1  malloc(sizeof(container_2));
   
   new_data->name=old_data->name;
   new_data->num_executions=old_data->num_executions;
 //  printf("Restored :\nage %d    name %s   address %s   option %d\n",new_data->age,new_data->name, new_data->address, new_data->option);
   
   free(old_data);
-  return (void *)new_data;
+  return (void .1 new_data;
 
 }
 

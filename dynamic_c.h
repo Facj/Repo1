@@ -20,6 +20,32 @@ char ser_process_var[100];
 int up_system_pid;
 int update_successful;
 
+struct timeval result, not1, not2;
+
+int timeval_subtract (struct timeval *result,struct timeval *x,struct timeval *y){
+
+       /* Perform the carry for the later subtraction by updating y. */
+       if (x->tv_usec < y->tv_usec) {
+         int nsec = (y->tv_usec - x->tv_usec) / 1000000 + 1;
+         y->tv_usec -= 1000000 * nsec;
+         y->tv_sec += nsec;
+       }
+       if (x->tv_usec - y->tv_usec > 1000000) {
+         int nsec = (x->tv_usec - y->tv_usec) / 1000000;
+         y->tv_usec += 1000000 * nsec;
+         y->tv_sec -= nsec;
+       }
+     
+       /* Compute the time remaining to wait.
+          tv_usec is certainly positive. */
+       result->tv_sec = x->tv_sec - y->tv_sec;
+       result->tv_usec = x->tv_usec - y->tv_usec;
+     
+       /* Return 1 if result is negative. */
+       if(x->tv_sec < y->tv_sec) return 1;
+       else return 0;
+}
+
 
 
 
@@ -203,11 +229,15 @@ void *update_point(int up_id, void **data){
     //sprintf(exec_new,"gnome-terminal ./up_2 &"); //Modified
     sprintf(exec_new,"./%s &",PROGRAM_NAME);    
     //printf("Process %d .START NEW VERSION at point %d\n",up_var->old_version_pid,up_id);
+    gettimeofday(&not1,NULL);
     system(exec_new);
     sleep(10);
     if(update_successful) {
-	//printf("SUCCESSFUL\n");  
-	kill(up_system_pid,SIGUSR2); 
+	//printf("SUCCESSFUL\n");
+	gettimeofday(&not2,NULL); 
+	kill(up_system_pid,SIGUSR2);
+        timeval_subtract(&result,&not2,&not1);
+        printf("Update time:%ld.%06ld\n", result.tv_sec, result.tv_usec);
 	return NULL;}
     else {
 	up_var->update_in_progress=0; 

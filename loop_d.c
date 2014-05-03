@@ -13,7 +13,7 @@ int main(int argc, char *argv[]){
          switch (c)
            {
            case 'v':
-		printf("Updatable version 4.15  extended\nDynamically updatable. Compatible from 1.4\n");
+		printf("Updatable version 4.16  extended\nDynamically updatable. Compatible from 1.4\n");
              return 0;
            }	
        
@@ -44,7 +44,7 @@ int main(int argc, char *argv[]){
 	   	time (&rawtime);
 	   	timeinfo = localtime (&rawtime);
 	   	fp=fopen("version_record.txt","a");
-	   	fprintf(fp,"Version 4.15  .Executed on %s's device %d times on %s ",data->name,data->num_executions,asctime(timeinfo));
+	   	fprintf(fp,"Version 4.16  .Executed on %s's device %d times on %s ",data->name,data->num_executions,asctime(timeinfo));
 	   	fclose(fp);
 	   }
 

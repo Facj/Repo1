@@ -13,7 +13,7 @@ int main(int argc, char *argv[]){
          switch (c)
            {
            case 'v':
-		printf("Updatable version 4.10  extended\nDynamically updatable. Compatible from 1.4\n");
+		printf("Updatable version 4.11  extended\nDynamically updatable. Compatible from 1.4\n");
              return 0;
            }	
        
@@ -37,14 +37,14 @@ int main(int argc, char *argv[]){
 	
 	while(1)
 	  {
-		sleep(5);
+		//sleep(5);
 		data->num_executions++;
 		data=update_point(3,(void *)data);
 		if(data==NULL) { return 0;}
 	   	time (&rawtime);
 	   	timeinfo = localtime (&rawtime);
 	   	fp=fopen("version_record.txt","a");
-	   	fprintf(fp,"Version 4.10  .Executed on %s's device %d times on %s ",data->name,data->num_executions,asctime(timeinfo));
+	   	fprintf(fp,"Version 4.11  .Executed on %s's device %d times on %s ",data->name,data->num_executions,asctime(timeinfo));
 	   	fclose(fp);
 	   }
 

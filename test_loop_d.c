@@ -4,6 +4,6 @@ int main()
 {
 
  printf("Test was OK");
- return 1;
+ return 0;
 
 }

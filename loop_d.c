@@ -13,9 +13,8 @@ int main(int argc, char *argv[]){
          switch (c)
            {
            case 'v':
-		printf("Updatable version 4.3 extended\nDynamically updatable. Compatible from 1.2\n");
+		printf("Updatable version 4.4  extended\nDynamically updatable. Compatible from 1.4\n");
              return 0;
-         
            }	
        
  	 sprintf(PROGRAM_NAME,"loop_d");
@@ -23,17 +22,17 @@ int main(int argc, char *argv[]){
 	 check_update_status();
         
 
-	 container *data;
-	 data=(container *) malloc(sizeof(container)); 
+	 container_2 *data;
+	 data=(container_2 *) malloc(sizeof(container_2)); 
  
 	 if(up_var->updated_from==0){
    
 	   data->num_executions=0;
-           if(argc>1) data->name=argv[1];
-	    else data->name="user";
+           data->name=argv[1];
 	 }
 	 if(up_var->updated_from<=1){    //Every if starts with the update_point function
 	   update_point(1,(void *)data);
+	   
 	 }
 	
 	while(1)
@@ -45,7 +44,7 @@ int main(int argc, char *argv[]){
 	   	time (&rawtime);
 	   	timeinfo = localtime (&rawtime);
 	   	fp=fopen("version_record.txt","a");
-	   	fprintf(fp,"Version 4.3 .Executed on %s's device %f times on %s ",data->name,data->num_executions,asctime(timeinfo));
+	   	fprintf(fp,"Version 4.4  .Executed on %s's device %d times on %s ",data->name,data->num_executions,asctime(timeinfo));
 	   	fclose(fp);
 	   }
 
@@ -57,8 +56,8 @@ int main(int argc, char *argv[]){
 
 int save_data(void *data){
   
-  container *old_data;
-  old_data=(container *)data;
+  container_2 *old_data;
+  old_data=(container_2 *)data;
   //printf("Before serialization: %s\n",old_data->name);
   XDR xdrs;
   //Serialization
@@ -92,11 +91,11 @@ void *restore_data(void *data){
   fclose (fp);
 //  printf("From old version:\nage %f    name %s   address %s   option %d\n",old_data->age,old_data->name, old_data->address, old_data->option);
   
-  container *new_data;
-  new_data=(container *) malloc(sizeof(container));
+  container_2 *new_data;
+  new_data=(container_2 *) malloc(sizeof(container_2));
   
   new_data->name=old_data->name;
-  new_data->num_executions=old_data->num_executions;
+  new_data->num_executions=(int)old_data->num_executions;
 //  printf("Restored :\nage %d    name %s   address %s   option %d\n",new_data->age,new_data->name, new_data->address, new_data->option);
   
   free(old_data);
